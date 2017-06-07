@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RPI3_WIFI_FIRMWARE
+	bool "rpi3-wifi-firmware"
+	help
+		Wifi firmware for Raspberry Pi 3

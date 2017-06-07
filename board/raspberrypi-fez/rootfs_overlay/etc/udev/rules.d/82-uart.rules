@@ -1,0 +1,1 @@
+SUBSYSTEM=="tty", DEVPATH=="/devices/platform/soc/3f201000.serial/tty/ttyAMA*", SYMLINK+="ttyKnx0"

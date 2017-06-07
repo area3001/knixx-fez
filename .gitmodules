@@ -1,0 +1,4 @@
+[submodule "buildroot"]
+	path = buildroot
+	url = https://github.com/buildroot/buildroot.git
+	branch = dd2020aadf0bf9b157a6f42ec189318edc560d3b 

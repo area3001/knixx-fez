@@ -1,0 +1,5 @@
+config BR2_PACKAGE_MQTT_KNX
+        bool "mqtt-knx"
+        help
+          NodeJS KNX to MQTT bridge
+          https://github.com/krambox/mqtt-knx

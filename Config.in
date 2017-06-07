@@ -1,0 +1,4 @@
+source "$BR2_EXTERNAL_KNIXX_BUILDROOT_PATH/package/rpi3-wifi-firmware/Config.in"
+source "$BR2_EXTERNAL_KNIXX_BUILDROOT_PATH/package/knxd/Config.in"
+source "$BR2_EXTERNAL_KNIXX_BUILDROOT_PATH/package/mqtt-knx/Config.in"
+source "$BR2_EXTERNAL_KNIXX_BUILDROOT_PATH/package/knxmqtt/Config.in"
