@@ -1,15 +1,21 @@
 include $(sort $(wildcard $(BR2_EXTERNAL_KNIXX_BUILDROOT_BUILDROOT_PATH)/package/*/*.mk))
 
-flash-rpi:
-	@if ! test $(DRIVE); then \
-		echo "No drive specified. Please specify you SD card using DRIVE=<your sd card device>"; \
+guard-%:
+	@ if [ "${${*}}" = "" ]; then \
+		echo "Environment variable $* not set"; \
 		exit 1; \
 	fi
 
-	@for PARTITION in 1 2; do \
+img=$(shell ls -t $(BINARIES_DIR)/*.img | head -n1)
+flash-rpi: guard-DRIVE
+	@for PARTITION in 1 2 3; do \
 		if [ -b $(DRIVE)$${PARTITION} ]; then \
 			echo unmounting $(DRIVE)$${PARTITION}; \
-			umount $(DRIVE)$${PARTITION}; \
+			umount $(DRIVE)$${PARTITION} || /bin/true; \
+		fi; \
+		if [ -b $(DRIVE)p$${PARTITION} ]; then \
+			echo unmounting $(DRIVE)p$${PARTITION}; \
+			umount $(DRIVE)p$${PARTITION} || /bin/true; \
 		fi; \
 	done
 

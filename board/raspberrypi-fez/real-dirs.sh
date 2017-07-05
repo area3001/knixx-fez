@@ -22,5 +22,4 @@ if [ `readlink "${TARGET_DIR}/sbin/init"` == "rund" ]; then
 fi
 
 make_real_dir /etc/dropbear
-make_real_dir /etc/dropbear/remote
 make_real_dir /boot

@@ -45,16 +45,6 @@ genimage \
 #generate swupdate image
 PRODUCT_NAME="rpi-fez"
 
-# Generate /etc/reynaers/config/softwareversion, /etc/reynaers/config/softwaredate
-VERSION=$(git --git-dir=../.git --work-tree=../ describe --dirty --always --tags)
-BR_VERSION=$(git --git-dir=./.git --work-tree=./ describe --dirty --always --tags)
-echo "Building version: ${VERSION}"
-mkdir -p $TARGET_DIR/etc/fez/config
-echo "SYSTEM=${VERSION}" > "$TARGET_DIR/etc/fez/config/softwareversion" 2> /dev/null
-echo "BUILDROOT=${BR_VERSION}" >> "$TARGET_DIR/etc/fez/config/softwareversion" 2> /dev/null
-cp "$TARGET_DIR/etc/fez/config/softwareversion" "$BINARIES_DIR/softwareversion"
-(d="$(git --git-dir=../.git log --date=iso --pretty=%ad -1)"; date +%s --date="$d"; echo "$d") > $TARGET_DIR/etc/fez/config/softwaredate
-
 mv ${BINARIES_DIR}/sdcard.img ${BINARIES_DIR}/${PRODUCT_NAME}_${VERSION}.img
 
 exit $?
