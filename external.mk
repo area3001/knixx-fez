@@ -1,4 +1,4 @@
-include $(sort $(wildcard $(BR2_EXTERNAL_KNIXX_BUILDROOT_BUILDROOT_PATH)/package/*/*.mk))
+include $(sort $(wildcard $(BR2_EXTERNAL_KNIXX_BUILDROOT_PATH)/package/*/*.mk))
 
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \

@@ -11,6 +11,8 @@ KNXMQTT_SITE = https://github.com/kurt-vd/knxmqtt.git
 KNXMQTT_SITE_METHOD = git
 KNXMQTT_LICENSE = GPLv3
 KNXMQTT_LICENSE_FILES = COPYING
+KNXMQTT_DEPENDENCIES = mosquitto
+
 
 define KNXMQTT_CONFIGURE_CMDS
 	echo "PREFIX=/usr" > $(@D)/config.mk

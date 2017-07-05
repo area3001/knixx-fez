@@ -1,5 +1,6 @@
 config BR2_PACKAGE_KNXMQTT
 	bool "knxmqtt"
   depends on BR2_PACKAGE_KNXD
+  select BR2_PACKAGE_MOSQUITTO
 	help
 	  mqttnxd is a bridge between knxd and MQTT

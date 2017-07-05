@@ -20,6 +20,6 @@ KNXD_CONF_OPTS = --disable-systemd \
         --enable-groupcache \
         --enable-ncn5120
 
-KNXD_DEPENDENCIES = libev libusb
+KNXD_DEPENDENCIES = libev libusb argp-standalone
 
 $(eval $(autotools-package))
