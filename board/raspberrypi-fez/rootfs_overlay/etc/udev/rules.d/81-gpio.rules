@@ -1,0 +1,1 @@
+SUBSYSTEM=="input", DEVPATH=="/devices/platform/buttons_pins/input/*", SYMLINK+="input/buttons",

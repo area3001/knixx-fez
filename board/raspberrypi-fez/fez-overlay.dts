@@ -5,161 +5,47 @@
 / {
 	compatible = "brcm,bcm2708";
 
-	fragment@0 {
-		target = <&uart0>;
+    fragment@0 {
+		target-path = "/";
 		__overlay__ {
-			pinctrl-names = "default";
-			pinctrl-0 = <&uart0_pins>;
-			status = "okay";
+      buttons_pins {
+        compatible = "gpio-keys";
+        sw01 {
+          label = "SW1";
+          linux,code = <2>;
+          gpios = <&gpio 18 0>;
+        };
+      };
 		};
 	};
 
-    fragment@1 {
-		target = <&act_led>;
+	fragment@1 {
+		target-path = "/";
 		__overlay__ {
-            label = "led600g";
-    		linux,default-trigger = "none";
+			leds_pins {
+				compatible = "gpio-leds";
+
+				led {
+					label = "LED";
+					gpios = <&gpio 17 0>;
+					linux,default-trigger = "timer";
+				};
+			};
 		};
 	};
 
 	fragment@2 {
-		target-path = "/";
-		__overlay__ {
-			gpio-keys-buttons {
-				compatible = "gpio-keys";
-				#address-cells = <0>;
-				#size-cells = <0>;
-
-				/* all gpio's are now active low */
-				down {
-					label = "GPIO Key S1";
-					gpios = <&gpio 21 1>;
-					linux,code = <108>; /* down */
-					wakeup-source;
-				};
-				left {
-					label = "GPIO Key EXT_SW";
-					gpios = <&gpio 27 1>;
-					linux,code = <105>; /* left */
-				};
-			};
-		};
-	};
-
-    fragment@3 {
-		target-path = "/";
-		__overlay__ {
-            gpio-keys-dipswitch {
-              compatible = "gpio-keys";
-
-              one {
-                label = "GPIO Key DIPSWITCH 0";
-                linux,code = <2>;
-                gpios = <&gpio 22 1>;
-              };
-
-              two {
-                label = "GPIO Key DIPSWITCH 1";
-                linux,code = <3>;
-                gpios = <&gpio 10 1>;
-              };
-
-              three {
-                label = "GPIO Key DIPSWITCH 2";
-                linux,code = <4>;
-                gpios = <&gpio 9 1>;
-              };
-
-              four {
-                label = "GPIO Key DIPSWITCH 3";
-                linux,code = <5>;
-                gpios = <&gpio 11 1>;
-              };
-
-              five {
-                label = "GPIO Key DIPSWITCH 4";
-                linux,code = <6>;
-                gpios = <&gpio 5 1>;
-              };
-
-              six {
-                label = "GPIO Key DIPSWITCH 5";
-                linux,code = <7>;
-                gpios = <&gpio 6 1>;
-              };
-
-              seven {
-                label = "GPIO Key DIPSWITCH 6";
-                linux,code = <8>;
-                gpios = <&gpio 19 1>;
-              };
-
-              eight {
-                label = "GPIO Key DIPSWITCH 7";
-                linux,code = <9>;
-                gpios = <&gpio 26 1>;
-              };
-
-            };
-		};
-	};
-
-
-
-
-	fragment@4 {
-		target-path = "/";
-		__overlay__ {
-			rbus_leds_pins {
-				compatible = "gpio-leds";
-
-				ext_led {
-					label = "ext_led";
-					gpios = <&gpio 12 0>;
-					linux,default-trigger = "timer";
-				};
-				d1 {
-					label = "led602r";
-					gpios = <&gpio 18 0>;
-					linux,default-trigger = "none";
-				};
-				d2 {
-					label = "led601y";
-					gpios = <&gpio 13 0>;
-					linux,default-trigger = "none";
-				};
-			};
-		};
-	};
-
-	fragment@5 {
 		target = <&gpio>;
 		__overlay__ {
 
-			dip_switch_pins: spi0_pins {
-				brcm,pins = <9 10 11>;
-				brcm,function = <0 0 0>;
+			buttons_pins: buttons_pins{
+				brcm,pins = <18>;
+				brcm,function = <0>;
 			};
 
-            dip_switch_pins2: i2s {
-                brcm,pins = <18 19 20 21>;
-                brcm,function = <4 0 4 4>; /* alt0 */
-            };
-
-			rbus_buttons_pins: rbus_buttons_pins{
-				brcm,pins = <21 27>;
-				brcm,function = <0 0>;
-			};
-
-			rbus_leds_pins: rbus_leds_pins {
-				brcm,pins = <12 13 18>;
-				brcm,function = <1 1 1>;
-			};
-
-			uart0_pins: uart0 {
-				brcm,pins = <14 15 17>; /* UART0: TX0 RX0 */
-				brcm,function = <4 4 1>; /* alt0, alt0 */
-				brcm,pull = <2 2 0>; /* 2:up 1:down 0:none */
+			leds_pins: leds_pins {
+				brcm,pins = <17>;
+				brcm,function = <1>;
 			};
 		};
 	};
